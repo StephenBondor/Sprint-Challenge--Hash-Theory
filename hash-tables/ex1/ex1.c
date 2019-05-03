@@ -17,11 +17,13 @@ Answer *get_indices_of_item_weights(int *weights, int length, int limit)
 			Answer *answer = malloc(sizeof(Answer));
 			answer->index_1 = counterpart > i ? counterpart : i;
 			answer->index_2 = counterpart > i ? i : counterpart;
+			destroy_hash_table(ht);
 			return answer;
 		}
 		// populate the hash table with whatever is next
 		hash_table_insert(ht, weights[i], i);
 	}
+	destroy_hash_table(ht);
 	return NULL;
 }
 
