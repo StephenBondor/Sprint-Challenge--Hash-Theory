@@ -6,15 +6,15 @@
 Answer *get_indices_of_item_weights(int *weights, int length, int limit)
 {
   HashTable *ht = create_hash_table(16);
-  Answer *answer = malloc(sizeof(Answer));
-  int counterpart;
 
   // YOUR CODE HERE
+  int counterpart;
 	for (int i = 0; i < length; i++)
 	{	// search the table for its counterpart
 		counterpart = hash_table_retrieve(ht, limit-weights[i]);
 		if (counterpart != -1)
-		{	// if found, return in order
+		{	// if found, return and answer in the correct order
+			Answer *answer = malloc(sizeof(Answer));
 			answer->index_1 = counterpart > i ? counterpart : i;
 			answer->index_2 = counterpart > i ? i : counterpart;
 			return answer;

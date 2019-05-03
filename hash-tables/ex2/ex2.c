@@ -8,17 +8,18 @@ char **reconstruct_trip(Ticket **tickets, int length)
 {
   	HashTable *ht = create_hash_table(16);
   	char **route = malloc(length * sizeof(char *));
-	// YOUR CODE HERE
 
+	// YOUR CODE HERE
 	// Populate the hash table
-	for (int i = 0; i < length; i++)
+	int i;
+	for (i = 0; i < length; i++)
 	{
 		hash_table_insert(ht, tickets[i]->source, tickets[i]->destination);
 	}
 
-	// Populate the route, starting with NONE
+	// Populate the route, starting with the NONE key
 	route[0] = hash_table_retrieve(ht, "NONE");
-	for (int i = 1; i < length; i++)
+	for (i = 1; i < length; i++)
 	{
 		route[i] = hash_table_retrieve(ht, route[i-1]);
 	}
